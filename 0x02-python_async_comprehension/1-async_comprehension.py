@@ -3,13 +3,13 @@
     takes no arguments
 """
 import asyncio
-from typing import Generator
+from typing import List
 async_generator = __import__('0-async_generator').async_generator
 
 
-async def async_comprehension() -> Generator[float, None, None]:
+async def async_comprehension() -> List[float]:
     """Collects 10 random numbers using an async comprehesion
-        returns 10 random numbers
+        returns 10 random numbers as values
     """
-    random_num = [list_int async for list_int in async_generator()]
+    random_num = [random_int async for random_int in async_generator()]
     return random_num
