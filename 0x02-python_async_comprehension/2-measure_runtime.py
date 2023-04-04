@@ -4,11 +4,10 @@
 """
 import asyncio
 import time
-from typing import List
 async_comprehension = __import__('1-async_comprehension').async_comprehension
 
 
-async def measure_runtime() -> List[float]:
+async def measure_runtime() -> float:
     """Executing four times in parallel
         using asyncio.gather and measures the time of execution
         and returns the total execution time
