@@ -10,7 +10,7 @@ import time
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-async def task_wait_random(max_delay: int = 0) -> asyncio.Task:
+def task_wait_random(max_delay: int = 0) -> asyncio.Task:
     """ it takes max_delay as an argument and returns
         asyncio.task
     """
