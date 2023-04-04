@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""this function takes wait_n and alter it to a new funtion
+    task_wait_n that returns float values
+"""
 import asyncio
 from typing import List
 from asyncio.tasks import Task
