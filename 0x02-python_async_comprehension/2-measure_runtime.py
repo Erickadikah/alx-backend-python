@@ -13,11 +13,8 @@ async def measure_runtime() -> List[float]:
         using asyncio.gather and measures the time of execution
         and returns the total execution time
     """
-    my_list = []
     start_time = time.perf_counter()
-    for i in range(4):
-        task = asyncio.create_task(async_comprehension())
-        my_list.append(task)
+    my_list = [asyncio.create_task(async_comprehension()) for i in range(4)]
     result = await asyncio.gather(*my_list)
     total_time = time.perf_counter() - start_time
     return total_time
