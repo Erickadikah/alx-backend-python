@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""
+"""Uniittest Testcase for Class GithubOrgClient
 """
 from msilib.schema import SelfReg
 from typing import Self
