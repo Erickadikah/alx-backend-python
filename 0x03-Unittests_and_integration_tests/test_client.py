@@ -34,9 +34,9 @@ class TestGithubOrgClient(unittest.TestCase):
         """expected one based on the mocked payload.
             Cli : GithubOrgClient
         """
-        expected = 'https://api.github.com/orgs/testorg/repos'
+        expected = 'www.holberton.io'
         payload = {"repos_url": expected}
-        with mock.patch('requests.get') as mock_get:
-            mock_get.return_value.json.return_value = payload
-            cli = GithubOrgClient("testorg")
+        to_mock = 'client.GithubOrgClient.org'
+        with patch(to_mock, PropertyMock(return_value=payload)):
+            cli = GithubOrgClient("y")
             self.assertEqual(cli._public_repos_url, expected)
