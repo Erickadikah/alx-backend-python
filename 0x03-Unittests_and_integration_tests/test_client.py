@@ -6,12 +6,10 @@ import requests
 import unittest
 from unittest.mock import patch, Mock, PropertyMock, call
 from parameterized import parameterized, parameterized_class
-import utils
 from utils import access_nested_map, get_json, memoize
 from client import GithubOrgClient
-import client
 from fixtures import TEST_PAYLOAD
-from unittest import mock
+from unittest import expectedFailure, mock
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -40,3 +38,13 @@ class TestGithubOrgClient(unittest.TestCase):
         with patch(to_mock, PropertyMock(return_value=payload)):
             cli = GithubOrgClient("y")
             self.assertEqual(cli._public_repos_url, expected)
+
+    parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license"),
+        ({"license": {"key": "other_license"}}, "other_license")
+    ])
+
+    def test_has_license(self, repo, license, expected):
+        """Test case
+        """
+        self.assertEqual(GithubOrgClient.has_license(repo(license), expected))
