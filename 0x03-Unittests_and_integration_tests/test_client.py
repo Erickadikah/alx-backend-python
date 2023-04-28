@@ -39,12 +39,40 @@ class TestGithubOrgClient(unittest.TestCase):
             cli = GithubOrgClient("y")
             self.assertEqual(cli._public_repos_url, expected)
 
-    parameterized.expand([
-        ({"license": {"key": "my_license"}}, "my_license"),
-        ({"license": {"key": "other_license"}}, "other_license")
+    @parameterized.expand([
+        ({'license': {'key': "GNU PL"}}, "GNU PL", True),
+        ({'license': {'key': "MIT-5.0"}}, "GNU PL", False),
     ])
-
-    def test_has_license(self, repo, license, expected):
-        """Test case
+    def test_has_license(self, repo: dict, key: str, expected: bool) -> None:
+        """Args: repo, key,
+            expected
+            Return: None
         """
-        self.assertEqual(GithubOrgClient.has_license(repo(license), expected))
+        client = GithubOrgClient("google")
+        permit = client.has_license(repo, key)
+        self.assertEqual(permit, expected)
+
+    # @parameterized.expand([
+    #     ({"license": {"key": "my_license"}}, "my_license", True),
+    #     ({"license": {"key": "other_license"}}, "other_license", True)
+    # ])
+    # def test_has_license(self, repo, license, expected):
+    #     """Test case
+    #     """
+
+    #     GithubOrgClient1 = GithubOrgClient('google')
+    #     Client1 = GithubOrgClient1.has_license(repo,license)
+    #     self.assertEqual(Client1(expected))
+
+    @paramaterized.expand([
+        ('org_payload', 'repos_payload', 'expected_repos', ' apache2_repos')
+    ])
+class GithubOrgClient(unittest.TestCase):
+    """Intergration testcase
+    """
+
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
