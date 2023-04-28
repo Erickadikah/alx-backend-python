@@ -52,27 +52,3 @@ class TestGithubOrgClient(unittest.TestCase):
         permit = client.has_license(repo, key)
         self.assertEqual(permit, expected)
 
-    # @parameterized.expand([
-    #     ({"license": {"key": "my_license"}}, "my_license", True),
-    #     ({"license": {"key": "other_license"}}, "other_license", True)
-    # ])
-    # def test_has_license(self, repo, license, expected):
-    #     """Test case
-    #     """
-
-    #     GithubOrgClient1 = GithubOrgClient('google')
-    #     Client1 = GithubOrgClient1.has_license(repo,license)
-    #     self.assertEqual(Client1(expected))
-
-    @paramaterized.expand([
-        ('org_payload', 'repos_payload', 'expected_repos', ' apache2_repos')
-    ])
-class GithubOrgClient(unittest.TestCase):
-    """Intergration testcase
-    """
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
